@@ -14,6 +14,15 @@ app = Flask(__name__)
 URL_REGEX = r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
 MAX_URL_LENGTH = 2000 # Set a reasonable limit for QR code data
 
+# --- Health Check Endpoint ---
+@app.route('/health', methods=['GET'])
+def health_check():
+    """
+    Health check endpoint for the Render service.
+    Returns a 200 OK status if the service is running.
+    """
+    return jsonify({"status": "healthy"}), 200
+
 @app.route('/generate-qr', methods=['POST'])
 def generate_qr_code():
     """
@@ -100,5 +109,6 @@ def generate_qr_code():
     
     return jsonify(response_data), 200
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+# if __name__ == '__main__':
+#     # Debug mode is set to False for production
+#     app.run(host='0.0.0.0', port=5001, debug=False)
