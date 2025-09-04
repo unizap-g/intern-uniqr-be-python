@@ -109,7 +109,7 @@ def generate_qr_code():
     
     return jsonify(response_data), 200
 
-# if __name__ == '__main__':
-#     # Debug mode is set to False for production
-#     app.run(host='0.0.0.0', port=5001, debug=False)
+if __name__ == '__main__':
+    # Debug mode is set to False for production
+    app.run(host='0.0.0.0', port=5001, debug=False)
 #kaif
